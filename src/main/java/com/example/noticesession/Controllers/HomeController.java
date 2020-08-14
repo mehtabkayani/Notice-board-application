@@ -147,10 +147,8 @@ public class HomeController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editNotice(@PathVariable("id") Integer id, Model model,HttpSession session,HttpServletResponse response) throws IOException {
-        if (!checkUserSession(session.getId())) {
-            response.sendRedirect("/");
-        }
+    public String editNotice(@PathVariable("id") Integer id, Model model,HttpSession session,HttpServletResponse response) {
+
         Notice notice = noticeRepository.getOne(id);
         model.addAttribute("notice", notice);
 
@@ -174,6 +172,8 @@ public class HomeController {
 
         return "redirect:/";
     }
+
+
 
 
     @GetMapping("/logout")
