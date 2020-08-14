@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit notice</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+</head>
+<body>
+<h1 style="text-align: center">Edit notice</h1>
+<a href="/" class="btn btn-primary btn-sm">Back</a>
+<h6 th:text="'ID: '+ ${notice.getNotice_id()}"></h6>
+<!--<form method="post" th:object="${notice}" th:action="@{'/edit/' + ${notice.getNotice_id()}}">-->
+<form method="post" th:object="${notice}" th:action="@{/edit}">
+
+    <div class="form-group">
+
+        <input type="hidden" name="noticeId" class="form-control" th:field="*{notice_id}" placeholder="ID">
+
+    </div>
+    <div class="form-group">
+        <label for=""> Edit Notice:</label>
+        <textarea rows="4" cols="50" type="text" th:field="*{text}" class="form-control" style="resize: none"></textarea>
+    </div>
+
+    <button class="btn btn-danger mb-5">Edit</button>
+</form>
+
+
+</body>
+</html>

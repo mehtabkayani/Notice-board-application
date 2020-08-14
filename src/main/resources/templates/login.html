@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+
+</head>
+<body class="text-center">
+<div>
+    <form th:action="@{/saveSession}" th:object="${User}" method="post">
+        <p>Username: <input type="text" th:field="*{name}" /></p>
+        <p>Password: <input type="text" th:field="*{password}" /></p>
+        <button type="submit" name="action" value="login">login</button>
+    </form>
+</div>
+
+</body>
+</html>

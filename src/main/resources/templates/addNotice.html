@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add notice</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+</head>
+<body th:class="text-center">
+<h1 style="text-align: center" th:id="addNotice">Add notice</h1>
+<h4 th:text="${user.user_id}"></h4>
+<a href="/" class="btn btn-primary btn-sm">Back</a>
+<!--<form method="post" th:object="${notice}" th:action="@{/addNotice}" > -->
+<form method="post" th:object="${notice}" th:action="@{'/addNotice/' + ${user.getUser_id()}}" >
+    <h4 hidden th:name="userId" th:field="${user.user_id}" th:value="Integer"></h4>
+    <div class="form-group">
+        <label for="">Notice:</label>
+        <textarea rows="4" cols="50" type="text" th:field="*{text}" class="form-control" style="resize: none" Add you text here...></textarea>
+    </div>
+    <button class="btn btn-danger mb-5">Add</button>
+</form>
+</body>
+</html>

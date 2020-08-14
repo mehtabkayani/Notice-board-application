@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:border-radius="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Notice board </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+</head>
+<body class="text-center">
+<h1 style="text-align: center; text-decoration: underline">Notice board</h1>
+
+<h4 th:text="${user.name} + '´s board! '"></h4>
+<a th:href="@{'/addNotice/' + ${user.getUser_id()}}" class="btn btn-primary btn-sm">Add notice</a>
+<a href="/logout" class="btn btn-secondary btn-sm">Logout</a>
+
+<br>
+<br>
+
+<main role="main" class="inner cover">
+    <div th:class="div-main" th:each="notice : ${notices}" style="margin: 20px 210px">
+        <span><i><h4 class="cover-heading" th:text="${notice.getUser().getName()}"></h4></i></span>
+        <p class="lead" th:text="${notice.getText()}" style="text-align: center"></p>
+        <p th:text="${notice.getComments()}"></p>
+        <a class="btn btn-primary btn-sm">Add comment</a>
+        <br>
+        <br>
+
+
+        <div th:if="${user.user_id == notice.getUser().user_id}">
+            <a th:href="@{'/editNotice/' + ${notice.getNotice_id()}}" class="btn btn-success btn-sm">Edit notice</a>
+            <a th:href="@{'/delete/' + ${notice.getNotice_id()}}" class="btn btn-danger btn-sm">Delete</a>
+        </div>
+        <!-- ELSE -->
+        <div th:unless="${user.user_id == notice.getUser().user_id}">
+
+        </div>
+
+
+        <hr th:class="my-4" style="width: 18rem;" >
+    </div>
+</main>
+</body>
+</html>
