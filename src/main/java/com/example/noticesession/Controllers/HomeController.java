@@ -152,7 +152,7 @@ public class HomeController {
         Notice notice = noticeRepository.getOne(id);
         model.addAttribute("notice", notice);
 
-        return "/edit";
+        return "edit";
     }
 
     @PostMapping("/edit")
