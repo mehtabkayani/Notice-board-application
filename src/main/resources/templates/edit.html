@@ -12,7 +12,8 @@
 <h6 th:text="'ID: '+ ${notice.getNotice_id()}"></h6>
 <!--<form method="post" th:object="${notice}" th:action="@{'/edit/' + ${notice.getNotice_id()}}">-->
 <form method="post" th:object="${notice}" th:action="@{/edit}">
-
+    <input type="hidden" th:field="*{user}">
+    <input type="hidden" th:field="*{notice_id}">
     <div class="form-group">
 
         <input type="hidden" name="noticeId" class="form-control" th:field="*{notice_id}" placeholder="ID">
