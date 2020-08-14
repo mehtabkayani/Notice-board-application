@@ -147,24 +147,18 @@ public class HomeController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editNotice(@PathVariable Integer id, Model model,HttpSession session,HttpServletResponse response) throws IOException {
-        if (!checkUserSession(session.getId())) {
-            response.sendRedirect("/");
-        }
+    public String editNotice(@PathVariable("id") Integer id, Model model,HttpSession session,HttpServletResponse response) {
 
         Notice notice = noticeRepository.getOne(id);
         model.addAttribute("notice", notice);
 
-        return "/edit";
+        return "edit";
     }
-
 
     @PostMapping("/edit")
     public String editNotice(Notice notice1, RedirectAttributes redirectAttributes) {
 
         User userNotice = userRepository.getOne(userSession.getUser_id());
-
-
         System.out.println("Notice1 ID " + notice1.getNotice_id());
         System.out.println("User ID " + userNotice.getUser_id());
 
@@ -174,11 +168,12 @@ public class HomeController {
         notice.setText(notice1.getText());
         notice.setUser(userNotice);
 
-
         noticeRepository.save(notice);
 
         return "redirect:/";
     }
+
+
 
 
     @GetMapping("/logout")
